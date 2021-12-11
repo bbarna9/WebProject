@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage books</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div>
+        <h2>Manage books</h2>
+    </div>
+    <div>
+        <a class="h3" th:href="@{/books/new}">Add New Book</a>
+    </div>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div class="mr-xl-5">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Release year</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="book : ${listBooks}">
+                    <tr>
+                        <td>[[${book.id}]]</td>
+                        <td>[[${book.title}]]</td>
+                        <td>[[${book.author}]]</td>
+                        <td>[[${book.genre}]]</td>
+                        <td>[[${book.releaseYear}]]</td>
+                        <td>
+                            <a class="h4 mr-3" th:href="@{'/books/edit/' + ${book.id}}">Edit</a>
+                            <a class="h4" th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
